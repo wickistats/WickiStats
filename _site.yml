@@ -2,7 +2,7 @@ name: "."
 title: "WickiStats Blog"
 description: |
   WickiStats Blog
-output_dir: "_site"
+output_dir: "docs"
 navbar:
   right:
     - text: "Home"
