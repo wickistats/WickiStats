@@ -1,7 +1,7 @@
 ---
 title: "2023 IPL Analysis"
 description: |
-  A short description of the post.
+  Who were the best batters and bowlers in the 2023 IPL? I use Adjusted Run Rate and Adjusted Average to examine the season performances.
 author:
   - name: Seth Benson
     url: https://example.com/norajones
@@ -16,8 +16,32 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Distill is a publication format for scientific and technical writing, native to the web.
 
-Learn more about using Distill at <https://rstudio.github.io/distill>.
+The 2023 IPL concluded at the end of last month. With over 70 games played (and at least 14 per team), it provided a large sample size to judge player performance. But how should these performances be judged and what is the best way to evaluate how much a player benefits their team in the t20 franchise games? The most traditional form is just aggregate stats, tracking the total runs over the tournament will [tell you](https://www.crictracker.com/ipl-orange-cap/) that Shubman Gill had the best performance of batsmen. Likewise, subjective awards like [Team of the Tournament](https://www.espncricinfo.com/story/ipl-2023-team-of-tournament-shubman-gill-suryakumar-yadav-mohammed-shami-ravindra-jadeja-in-the-mix-1379113) can be used. But a rigorous evaluation metric requires both objectivity and nuanced analysis that goes beyond these two forms. Especially for franchise performance, few metrics like this exist, and those that do are often less than transparent about their methods.  
 
+So what's the alternative? I'm presenting Adjusted Run Rate and Adjusted Average as new methods to gauge how much players helped or hurt their team. The metrics were inspired by [this ESPNcricinfo article](https://www.espncricinfo.com/story/ipl-2020-how-many-wins-do-the-top-players-contribute-to-their-team-in-an-ipl-season-1236781) which presented their own Runs Above Average metric that has unfortunately to my knowledge not been updated or expanded upon since then. I present what I believe is an improvement on their metric with my Adjusted Run Rate and introduce a way of evaluating the effect of staying longer at the crease or taking wickets with the Adjusted Average metric. This is done by taking weighing a player's strike rate/economy and average by the overs they bat/bowl in, the venue they are playing at, and position they face. Below you will see how different players fared according to the metric followed by a more in-depth explanation of how they are calculated.
 
+First, how efficiently did different batsmen score in the tournament? This is where batting Adjusted Run Rate (ARR) is used. Simply put, ARR measures how much more or less runs per ball a batter produces than would be expected. An 'expected' score is calculated for each ball they face by using the average runs scored in the venue and over they are in and adjusting for the quality of the bowler they are facing. So a batter with an ARR of 0 would be batting at an exactly average rate, while a batter with an ARR of 1 would be producing one run per ball more than what would be expected. Below you can see how all batters that scored at least 50 balls did on this metric graphed alongside their economy (note: dot size reflects total runs scored). When adjusting for betting situations, you can see that some players with similar strike rates have very different Adjusted Run Rates. For example, Kyle Mayers (0.175 ARR), who primarily batted in earlier overs with a lower expected run rate, had a much higher ARR than Andre Russell (-0.113), even though Russell had a higher strike rate. However, strike rate and ARR are still largely correlated. Glen Maxwell and Rashid Khan had the top two ARRs in the tournament while also having two of the top three strike rates.
+
+```{r battingARR}
+library(tidyr)
+library(dplyr)
+#bat_data <- read.csv('../../Data/IPL/2023/bat_data.csv')
+bat_data <- read.csv('Data/IPL/2023/bat_data.csv')
+#colnames(bat_data)
+bat_data <- bat_data %>% filter(runs > 100)
+library(plotly)
+fig <- plot_ly(type = 'scatter', mode = 'markers') 
+fig_bat <- fig %>%
+  add_trace(
+    x=bat_data$strike_rate, 
+    y=bat_data$adj_avg_bat_rd,
+    text = paste(bat_data$striker, format(bat_data$adj_avg_bat_rd,digits=3)),
+    hoverinfo = 'text',
+    marker = list(size = bat_data$runs, sizeref = 1.5, sizemode = 'area', color='blue'),
+    showlegend = F
+  ) %>%
+  layout(title = 'IPL 2023 Batting Efficiency',  xaxis = list(title = 'Economy'), 
+         yaxis = list(title = 'Adjusted Run Rate'))
+fig_bat
+```
