@@ -1,7 +1,7 @@
 name: "."
 title: "WickiStats Blog"
 description: |
-  WickiStats Blog
+  Furthering Cricket Statistics
 output_dir: "docs"
 navbar:
   right:

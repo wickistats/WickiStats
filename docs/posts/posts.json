@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2023-06-19-2023-ipl-analysis/",
+    "title": "2023 IPL Analysis",
+    "description": "Who were the best batters and bowlers in the 2023 IPL? I use Adjusted Run Rate and Adjusted Average to examine the season performances.",
+    "author": [
+      {
+        "name": "Seth Benson",
+        "url": "https://example.com/norajones"
+      }
+    ],
+    "date": "2023-06-19",
+    "categories": [],
+    "contents": "\r\nThe 2023 IPL concluded at the end of last month. With over 70 games played (and at least 14 per team), it provided a large sample size to judge player performance. But how should these performances be judged and what is the best way to evaluate how much a player benefits their team in the t20 franchise games? The most traditional form is just aggregate stats, tracking the total runs over the tournament will tell you that Shubman Gill had the best performance of batsmen. Likewise, subjective awards like Team of the Tournament can be used. But a rigorous evaluation metric requires both objectivity and nuanced analysis that goes beyond these two forms. Especially for franchise performance, few metrics like this exist, and those that do are often less than transparent about their methods.\r\nSo what’s the alternative? I’m presenting Adjusted Run Rate and Adjusted Average as new methods to gauge how much players helped or hurt their team. The metrics were inspired by this ESPNcricinfo article which presented their own Runs Above Average metric that has unfortunately to my knowledge not been updated or expanded upon since then. I present what I believe is an improvement on their metric with my Adjusted Run Rate and introduce a way of evaluating the effect of staying longer at the crease or taking wickets with the Adjusted Average metric. This is done by taking weighing a player’s strike rate/economy and average by the overs they bat/bowl in, the venue they are playing at, and position they face. Below you will see how different players fared according to the metric followed by a more in-depth explanation of how they are calculated.\r\nFirst, how efficiently did different batsmen score in the tournament? This is where batting Adjusted Run Rate (ARR) is used. Simply put, ARR measures how much more or less runs per ball a batter produces than would be expected. An ‘expected’ score is calculated for each ball they face by using the average runs scored in the venue and over they are in and adjusting for the quality of the bowler they are facing. So a batter with an ARR of 0 would be batting at an exactly average rate, while a batter with an ARR of 1 would be producing one run per ball more than what would be expected. Below you can see how all batters that scored at least 50 balls did on this metric graphed alongside their economy (note: dot size reflects total runs scored). When adjusting for betting situations, you can see that some players with similar strike rates have very different Adjusted Run Rates. For example, Kyle Mayers (0.175 ARR), who primarily batted in earlier overs with a lower expected run rate, had a much higher ARR than Andre Russell (-0.113), even though Russell had a higher strike rate. However, strike rate and ARR are still largely correlated. Glen Maxwell and Rashid Khan had the top two ARRs in the tournament while also having two of the top three strike rates.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2023-06-20T16:05:37-04:00",
+    "input_file": "2023-ipl-analysis.knit.md"
+  },
+  {
     "path": "posts/2023-06-09-page-overview/",
     "title": "Page Overview",
     "description": "This is a post from seth",
