@@ -3,6 +3,7 @@ title: "WickiStats Blog"
 site: distill::distill_website
 listing: 
  posts:
+   - 2023-06-19-2023-ipl-analysis
    - welcome
    - 2023-06-09-page-overview
 ---
