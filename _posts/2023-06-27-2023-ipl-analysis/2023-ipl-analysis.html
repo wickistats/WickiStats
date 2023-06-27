@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { color: #00769e; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
+  <!--radix_placeholder_meta_tags-->
+  <title>2023 IPL Analysis</title>
+
+  <meta property="description" itemprop="description" content="Who were the best batters and bowlers in the 2023 IPL? I use Adjusted Run Rate and Adjusted Average to examine the season&#39;s performances."/>
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2023-06-27"/>
+  <meta property="article:created" itemprop="dateCreated" content="2023-06-27"/>
+  <meta name="article:author" content="Seth Benson"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="2023 IPL Analysis"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Who were the best batters and bowlers in the 2023 IPL? I use Adjusted Run Rate and Adjusted Average to examine the season&#39;s performances."/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="2023 IPL Analysis"/>
+  <meta property="twitter:description" content="Who were the best batters and bowlers in the 2023 IPL? I use Adjusted Run Rate and Adjusted Average to examine the season&#39;s performances."/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["2023 IPL Analysis"]},{"type":"character","attributes":{},"value":["Who were the best batters and bowlers in the 2023 IPL? I use Adjusted Run Rate and Adjusted Average to examine the season's performances.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Seth Benson"]},{"type":"character","attributes":{},"value":["https://example.com/norajones"]}]}]},{"type":"character","attributes":{},"value":["2023-06-27"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["2023-ipl-analysis_files/anchor-4.2.2/anchor.min.js","2023-ipl-analysis_files/bowser-1.9.3/bowser.min.js","2023-ipl-analysis_files/crosstalk-1.2.0/css/crosstalk.min.css","2023-ipl-analysis_files/crosstalk-1.2.0/js/crosstalk.js","2023-ipl-analysis_files/crosstalk-1.2.0/js/crosstalk.js.map","2023-ipl-analysis_files/crosstalk-1.2.0/js/crosstalk.min.js","2023-ipl-analysis_files/crosstalk-1.2.0/js/crosstalk.min.js.map","2023-ipl-analysis_files/crosstalk-1.2.0/scss/crosstalk.scss","2023-ipl-analysis_files/distill-2.2.21/template.v2.js","2023-ipl-analysis_files/header-attrs-2.19/header-attrs.js","2023-ipl-analysis_files/htmlwidgets-1.6.1/htmlwidgets.js","2023-ipl-analysis_files/jquery-3.6.0/jquery-3.6.0.js","2023-ipl-analysis_files/jquery-3.6.0/jquery-3.6.0.min.js","2023-ipl-analysis_files/jquery-3.6.0/jquery-3.6.0.min.map","2023-ipl-analysis_files/plotly-binding-4.10.1/plotly.js","2023-ipl-analysis_files/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css","2023-ipl-analysis_files/plotly-main-2.11.1/plotly-latest.min.js","2023-ipl-analysis_files/popper-2.6.0/popper.min.js","2023-ipl-analysis_files/tippy-6.2.7/tippy-bundle.umd.min.js","2023-ipl-analysis_files/tippy-6.2.7/tippy-light-border.css","2023-ipl-analysis_files/tippy-6.2.7/tippy.css","2023-ipl-analysis_files/tippy-6.2.7/tippy.umd.min.js","2023-ipl-analysis_files/typedarray-0.1/typedarray.min.js","2023-ipl-analysis_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+    font-size: 100%;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+        }).join("\n");
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="2023-ipl-analysis_files/header-attrs-2.19/header-attrs.js"></script>
+  <script src="2023-ipl-analysis_files/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+  <script src="2023-ipl-analysis_files/plotly-binding-4.10.1/plotly.js"></script>
+  <script src="2023-ipl-analysis_files/typedarray-0.1/typedarray.min.js"></script>
+  <script src="2023-ipl-analysis_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="2023-ipl-analysis_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+  <script src="2023-ipl-analysis_files/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+  <link href="2023-ipl-analysis_files/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+  <script src="2023-ipl-analysis_files/plotly-main-2.11.1/plotly-latest.min.js"></script>
+  <script src="2023-ipl-analysis_files/popper-2.6.0/popper.min.js"></script>
+  <link href="2023-ipl-analysis_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="2023-ipl-analysis_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="2023-ipl-analysis_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="2023-ipl-analysis_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="2023-ipl-analysis_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="2023-ipl-analysis_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="2023-ipl-analysis_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"2023 IPL Analysis","description":"Who were the best batters and bowlers in the 2023 IPL? I use Adjusted Run Rate and Adjusted Average to examine the season's performances.","authors":[{"author":"Seth Benson","authorURL":"https://example.com/norajones","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2023-06-27T00:00:00.000-04:00","citationText":"Benson, 2023"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>2023 IPL Analysis</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p><p>Who were the best batters and bowlers in the 2023 IPL? I use Adjusted Run Rate and Adjusted Average to examine the season’s performances.</p></p>
+</div>
+
+<div class="d-byline">
+  Seth Benson <a href="https://example.com/norajones" class="uri">https://example.com/norajones</a> 
+  
+<br/>2023-06-27
+</div>
+
+<div class="d-article">
+<p>The 2023 IPL concluded at the end of last month. With over 70 games played (and at least 14 per team), it provided a large sample size to judge player performance. But how should these performances be judged and what is the best way to evaluate how much a player benefits their team in the t20 franchise games? The most traditional form is just aggregate stats, tracking the total runs over the tournament will <a href="https://www.crictracker.com/ipl-orange-cap/">tell you</a> that Shubman Gill had the best performance of batsmen. Likewise, subjective awards like <a href="https://www.espncricinfo.com/story/ipl-2023-team-of-tournament-shubman-gill-suryakumar-yadav-mohammed-shami-ravindra-jadeja-in-the-mix-1379113">Team of the Tournament</a> can be used. But a rigorous evaluation metric requires both objectivity and nuanced analysis that goes beyond these two forms. This is where “impact” style metrics are needed. There are existing metrics that meet this need, but they generally suffer from two pitfalls. First, many metrics like Cricviz’s Impact have restricted public access and are not openly available to explore. Second, some of the metrics that are transparent, such as Cricketingview’s <a href="https://cricketingview.substack.com/p/a-review-of-the-2023-ipl?utm_source=profile&amp;utm_medium=reader2">Misbah/Jogi measures</a> or Himanish Ganjoo’s <a href="https://www.espncricinfo.com/story/ipl-2020-how-many-wins-do-the-top-players-contribute-to-their-team-in-an-ipl-season-1236781">runs-above-average</a>, fail to consider the impact of wicket-taking and preserving.</p>
+<p>So, here I seek to address these limitations with two open-source metrics. I present a new way of analyzing efficiency with Adjusted Run Rate and introduce a way of evaluating the effect of preserving or taking wickets with the Adjusted Average metric. This is done by evaluating a player’s strike rate/economy and average in relation to the overs they bat/bowl in, the venue they are playing at, and the opposition they face.</p>
+<p>First, how efficiently did different batsmen score in the tournament? This is where batting Adjusted Run Rate (ARR) is used. Simply put, ARR measures how much more or less runs per ball a batter produces than would be expected. An ‘expected’ score is calculated for each ball they face by using the average runs scored in the venue and over they are in and adjusting for the quality of the bowler they are facing. So a batter with an ARR of 0 would be batting at an exactly average rate, while a batter with an ARR of 0.1 would be producing one tenth of a run per ball more than what would be expected. Below you can see how all batters that scored at least 100 runs did on this metric graphed alongside their economy (note: dot size reflects total runs scored). When adjusting for betting situations, you can see that some players with similar strike rates have very different Adjusted Run Rates. For example, Kyle Mayers (0.179 ARR), who primarily batted in earlier overs with a lower expected run rate, had a much higher Adjusted Run Rate than Andre Russell (-0.120 ARR), even though Russell had a higher strike rate. However, strike rate and ARR are still largely correlated. Glen Maxwell and Rashid Khan had the top two Adjusted Run Rates in the tournament while also having the top two strike rates.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-f6fc70ba9fadf69d73ba" style="width:624px;height:384px;"></div>
+<script type="application/json" data-for="htmlwidget-f6fc70ba9fadf69d73ba">{"x":{"visdat":{"7cd8461656f1":["function () ","plotlyVisDat"]},"cur_data":"7cd8461656f1","attrs":{"7cd8461656f1":{"mode":"markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"7cd8461656f1.1":{"mode":"markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","x":[181.137724550898,163.612565445026,157.801418439716,183.48623853211,177.075098814229,172.486772486772,172.946859903382,147.5,153.684210526316,144.106463878327,150,150.420168067227,158.333333333333,153.389830508475,163.90977443609,142.767295597484,164.114832535885,216.666666666667,160.283687943262,139.70893970894,151.595744680851,143.949044585987,160.106382978723,148.22695035461,163.157894736842,172.727272727273,140.196078431373,156.060606060606,182.456140350877,145.180722891566,141.836734693878,131.632653061224,139.007092198582,139.823008849558,158.219178082192,128.048780487805,139.824945295405,142.911877394636,161.428571428571,136.263736263736,144.186046511628,165.957446808511,131.958762886598,138.372093023256,113.939393939394,139.408866995074,151.776649746193,141.40625,137.349397590361,129.268292682927,139.175257731959,133.529411764706,127.173913043478,124.705882352941,136.758893280632,142.857142857143,140.955631399317,145.848375451264,145.505617977528,128.571428571429,149.526813880126,128.169014084507,113.223140495868,145.512820512821,132.03125,132.8,125.888324873096,130.5,135.960591133005,134.615384615385,123.376623376623,108.910891089109,109.58904109589],"y":[0.326829883957351,0.257599506630515,0.155997360716964,0.39629262205923,0.312515873790917,0.369245335950465,0.335749536160429,0.163608115631582,0.106096239177518,0.178893216593663,0.161722560743564,0.170120602768428,0.149109540569746,0.149145901721812,0.261911757228796,0.109075251476582,0.140819039965097,0.463248195647496,0.0977171796805485,0.054760212621745,0.128215374289183,0.144303251213107,0.102480380892786,0.13233224071359,0.0981766745219026,0.154889465314167,0.122450640238541,0.0626386391296263,0.177675406810776,0.0550020702768933,0.0559766973385388,0.00994391511236682,0.00717203869234967,0.0146300508607396,0.0112145296696013,0.0169463263281433,0.00175327296020429,0.000706928252985294,0.00150926711414234,-0.0176053305220891,-0.0128236216535721,-0.0220933680736503,-0.0374113194033167,-0.0260849821041546,-0.0273119360219307,-0.0230832957829291,-0.0239534186228403,-0.0210171249946168,-0.0667903684309393,-0.0213689628189077,-0.0759050423936312,-0.0571953752171064,-0.117773800465007,-0.129106586039465,-0.0457360438607827,-0.0962823172478171,-0.0441678293731978,-0.0479860601312209,-0.0752233520716896,-0.0662499253906405,-0.0460992248868831,-0.0708188538283033,-0.0700603231713579,-0.120041736245597,-0.166216391271552,-0.0851648260427403,-0.111204203485316,-0.11740559172188,-0.121994583944663,-0.238820518606362,-0.186581539631988,-0.286077058129004,-0.294127880926198],"text":["SA Yadav  0.326830","YBK Jaiswal  0.257600","Shubman Gill  0.155997","GJ Maxwell  0.396293","H Klaasen  0.312516","AM Rahane  0.369245","N Pooran  0.335750","RD Gaikwad  0.163608","F du Plessis  0.106096","KR Mayers  0.178893","MP Stoinis  0.161723","P Simran Singh  0.170121","S Dube  0.149110","SV Samson  0.149146","PD Salt  0.261912","Ishan Kishan  0.109075","Tilak Varma  0.140819","Rashid Khan  0.463248","C Green  0.097717","DP Conway  0.054760","JJ Roy  0.128215","Abhishek Sharma  0.144303","V Shankar  0.102480","RR Rossouw  0.132332","LS Livingstone  0.098177","Dhruv Jurel  0.154889","Q de Kock  0.122451","JM Sharma  0.062639","MS Dhoni  0.177675","N Wadhera  0.055002","Sikandar Raza  0.055977","DA Warner  0.009944","JC Buttler  0.007172","AT Rayudu  0.014630","TH David  0.011215","Anmolpreet Singh  0.016946","V Kohli  0.001753","S Dhawan  0.000707","SN Thakur  0.001509","MM Ali -0.017605","Atharva Taide -0.012824","M Shahrukh Khan -0.022093","MR Marsh -0.037411","A Badoni -0.026085","KH Pandya -0.027312","AR Patel -0.023083","SO Hetmyer -0.023953","B Sai Sudharsan -0.021017","A Manohar -0.066790","WP Saha -0.021369","MK Lomror -0.075905","Rahmanullah Gurbaz -0.057195","MW Short -0.117774","PP Shaw -0.129107","HH Pandya -0.045736","RA Jadeja -0.096282","N Rana -0.044168","VR Iyer -0.047986","DA Miller -0.075223","MA Agarwal -0.066250","RK Singh -0.046099","RA Tripathi -0.070819","KL Rahul -0.070060","AD Russell -0.120042","Abdul Samad -0.166216","RG Sharma -0.085165","AK Markram -0.111204","D Padikkal -0.117406","SM Curran -0.121995","KD Karthik -0.238821","HC Brook -0.186582","Aman Hakim Khan -0.286077","MK Pandey -0.294128"],"hoverinfo":"text","marker":{"size":[605,625,890,400,448,326,358,590,730,379,408,358,418,362,218,454,343,130,452,672,285,226,301,209,279,152,143,309,104,241,139,516,392,158,231,105,639,373,113,124,186,156,128,238,188,283,299,362,114,371,135,227,117,106,346,190,413,404,259,270,474,273,274,227,169,332,248,261,276,140,190,110,160],"sizeref":1.5,"sizemode":"area","color":"blue"},"showlegend":false,"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"IPL 2023 Batting Efficiency","xaxis":{"domain":[0,1],"automargin":true,"title":"Economy"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Adjusted Run Rate"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"mode":"markers","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"mode":"markers","type":"scatter","x":[181.137724550898,163.612565445026,157.801418439716,183.48623853211,177.075098814229,172.486772486772,172.946859903382,147.5,153.684210526316,144.106463878327,150,150.420168067227,158.333333333333,153.389830508475,163.90977443609,142.767295597484,164.114832535885,216.666666666667,160.283687943262,139.70893970894,151.595744680851,143.949044585987,160.106382978723,148.22695035461,163.157894736842,172.727272727273,140.196078431373,156.060606060606,182.456140350877,145.180722891566,141.836734693878,131.632653061224,139.007092198582,139.823008849558,158.219178082192,128.048780487805,139.824945295405,142.911877394636,161.428571428571,136.263736263736,144.186046511628,165.957446808511,131.958762886598,138.372093023256,113.939393939394,139.408866995074,151.776649746193,141.40625,137.349397590361,129.268292682927,139.175257731959,133.529411764706,127.173913043478,124.705882352941,136.758893280632,142.857142857143,140.955631399317,145.848375451264,145.505617977528,128.571428571429,149.526813880126,128.169014084507,113.223140495868,145.512820512821,132.03125,132.8,125.888324873096,130.5,135.960591133005,134.615384615385,123.376623376623,108.910891089109,109.58904109589],"y":[0.326829883957351,0.257599506630515,0.155997360716964,0.39629262205923,0.312515873790917,0.369245335950465,0.335749536160429,0.163608115631582,0.106096239177518,0.178893216593663,0.161722560743564,0.170120602768428,0.149109540569746,0.149145901721812,0.261911757228796,0.109075251476582,0.140819039965097,0.463248195647496,0.0977171796805485,0.054760212621745,0.128215374289183,0.144303251213107,0.102480380892786,0.13233224071359,0.0981766745219026,0.154889465314167,0.122450640238541,0.0626386391296263,0.177675406810776,0.0550020702768933,0.0559766973385388,0.00994391511236682,0.00717203869234967,0.0146300508607396,0.0112145296696013,0.0169463263281433,0.00175327296020429,0.000706928252985294,0.00150926711414234,-0.0176053305220891,-0.0128236216535721,-0.0220933680736503,-0.0374113194033167,-0.0260849821041546,-0.0273119360219307,-0.0230832957829291,-0.0239534186228403,-0.0210171249946168,-0.0667903684309393,-0.0213689628189077,-0.0759050423936312,-0.0571953752171064,-0.117773800465007,-0.129106586039465,-0.0457360438607827,-0.0962823172478171,-0.0441678293731978,-0.0479860601312209,-0.0752233520716896,-0.0662499253906405,-0.0460992248868831,-0.0708188538283033,-0.0700603231713579,-0.120041736245597,-0.166216391271552,-0.0851648260427403,-0.111204203485316,-0.11740559172188,-0.121994583944663,-0.238820518606362,-0.186581539631988,-0.286077058129004,-0.294127880926198],"text":["SA Yadav  0.326830","YBK Jaiswal  0.257600","Shubman Gill  0.155997","GJ Maxwell  0.396293","H Klaasen  0.312516","AM Rahane  0.369245","N Pooran  0.335750","RD Gaikwad  0.163608","F du Plessis  0.106096","KR Mayers  0.178893","MP Stoinis  0.161723","P Simran Singh  0.170121","S Dube  0.149110","SV Samson  0.149146","PD Salt  0.261912","Ishan Kishan  0.109075","Tilak Varma  0.140819","Rashid Khan  0.463248","C Green  0.097717","DP Conway  0.054760","JJ Roy  0.128215","Abhishek Sharma  0.144303","V Shankar  0.102480","RR Rossouw  0.132332","LS Livingstone  0.098177","Dhruv Jurel  0.154889","Q de Kock  0.122451","JM Sharma  0.062639","MS Dhoni  0.177675","N Wadhera  0.055002","Sikandar Raza  0.055977","DA Warner  0.009944","JC Buttler  0.007172","AT Rayudu  0.014630","TH David  0.011215","Anmolpreet Singh  0.016946","V Kohli  0.001753","S Dhawan  0.000707","SN Thakur  0.001509","MM Ali -0.017605","Atharva Taide -0.012824","M Shahrukh Khan -0.022093","MR Marsh -0.037411","A Badoni -0.026085","KH Pandya -0.027312","AR Patel -0.023083","SO Hetmyer -0.023953","B Sai Sudharsan -0.021017","A Manohar -0.066790","WP Saha -0.021369","MK Lomror -0.075905","Rahmanullah Gurbaz -0.057195","MW Short -0.117774","PP Shaw -0.129107","HH Pandya -0.045736","RA Jadeja -0.096282","N Rana -0.044168","VR Iyer -0.047986","DA Miller -0.075223","MA Agarwal -0.066250","RK Singh -0.046099","RA Tripathi -0.070819","KL Rahul -0.070060","AD Russell -0.120042","Abdul Samad -0.166216","RG Sharma -0.085165","AK Markram -0.111204","D Padikkal -0.117406","SM Curran -0.121995","KD Karthik -0.238821","HC Brook -0.186582","Aman Hakim Khan -0.286077","MK Pandey -0.294128"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"marker":{"color":"blue","size":[605,625,890,400,448,326,358,590,730,379,408,358,418,362,218,454,343,130,452,672,285,226,301,209,279,152,143,309,104,241,139,516,392,158,231,105,639,373,113,124,186,156,128,238,188,283,299,362,114,371,135,227,117,106,346,190,413,404,259,270,474,273,274,227,169,332,248,261,276,140,190,110,160],"sizeref":1.5,"sizemode":"area","line":{"color":"rgba(255,127,14,1)"}},"showlegend":false,"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<p>The same metric can be used to judge how economical bowlers were. Bowling Adjusted Run Rate (ARR) is calculated just like batting ARR except it examines the runs conceded by a bowler. So, like economy, a lower number is better. A bowler with a -0.1 ARR concedes one tenth of a run per ball less than expected. Below is the ARR and economy for all bowlers that bowled at least 100 balls in the 2023 IPL with dot size scaled by balls bowled. Like batting ARR and strike rate, we can see that bowling ARR is highly correlated with economy. Ravichandran Ashwin had the lowest ARR of the season among qualified bowlers while also having one of the lowest economies. There are some outliers though, such as Jofra Archer, who had a much better than average average ARR (-0.143) despite conceding nine and a half runs an over. This reflects the fact that he frequently face above average batters throughout the season.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-f3c647a8727fb6974181" style="width:624px;height:384px;"></div>
+<script type="application/json" data-for="htmlwidget-f3c647a8727fb6974181">{"x":{"visdat":{"7cd815ee771a":["function () ","plotlyVisDat"]},"cur_data":"7cd815ee771a","attrs":{"7cd815ee771a":{"mode":"markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"7cd815ee771a.1":{"mode":"markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","x":[7.51020408163265,8.14556962025316,7.5,7.19148936170213,8.11475409836066,7.82332155477032,7.36734693877551,7.75167785234899,7.97916666666667,8.17665615141956,8.03076923076923,8.23076923076923,8.23880597014925,8.60869565217391,8.02453987730061,8.21052631578947,7.56140350877193,8.92105263157895,8.00719424460432,7.45238095238095,8.58823529411765,8.73076923076923,8.17358490566038,9.5,8.24,7.82142857142857,9.1,8,7.74257425742574,8.54545454545454,8.33333333333333,8.89655172413793,9.11111111111111,8.64705882352941,7.89473684210526,7.5,7.84210526315789,9.37748344370861,8.125,8.64705882352941,8.4297520661157,8.26415094339623,9.07853403141361,9.125,9.375,9.21428571428571,9.12,9.96491228070176,10.0869565217391,9.5,9.12121212121212,8.73529411764706,10.5254237288136,10.5416666666667,9.69836065573771,9.8421052631579,10.4761904761905,9.75862068965517,9.65957446808511,9.94736842105263,9.88888888888889,10.7727272727273,10.2229965156794,9.89473684210526,9.92375366568915,10.3720930232558,10.5161290322581,10.85],"y":[-0.271134923524394,-0.214108787708021,-0.210291838862296,-0.21290588734163,-0.138079732319446,-0.162455268205094,-0.154926117941232,-0.151251068566981,-0.143177255574884,-0.124919707368481,-0.0997483683412827,-0.158736152640675,-0.0854023365019534,-0.114952670494499,-0.194040484572609,-0.124314416552964,-0.0800307372844024,-0.113887289188802,-0.0930221134322402,-0.100807135008683,-0.151310382769424,-0.145519005409523,-0.0742949426774057,-0.142816898771335,-0.108714061188853,-0.0924718820190152,-0.0585642628115823,-0.0456518384155172,-0.0375113325642127,-0.0851259014018724,-0.0318440624955243,-0.0342135900196995,-0.0196242441630445,-0.0516695712398118,-0.0145510263106256,-0.0149073500546104,-0.0159834078692452,-0.0111510739116676,-0.0135779563008252,0.00237948001850062,0.0041401393493829,0.0245225880759493,0.0286032316248985,0.0743498586755756,0.0502035573902294,0.0297790436780174,0.0569911273519281,0.058985654727068,0.0773945855992042,0.0529770698055416,0.0623442253600213,0.0888595751397706,0.154016756663955,0.130907251780918,0.0647443152461413,0.196799782175548,0.192765245679823,0.139873860519264,0.0880455773776447,0.239035841929324,0.181695068257496,0.22660615503732,0.11335673606839,0.289290835963575,0.110756378678566,0.321119202610775,0.235569266979432,0.441083931646826],"text":["R Ashwin -0.27113","CV Varun -0.21411","Mohammed Siraj -0.21029","AR Patel -0.21291","PP Chawla -0.13808","Noor Ahmad -0.16246","Kuldeep Yadav -0.15493","RD Chahar -0.15125","SP Narine -0.14318","YS Chahal -0.12492","Mohammed Shami -0.09975","Suyash Sharma -0.15874","Rashid Khan -0.08540","Sandeep Sharma -0.11495","Harpreet Brar -0.19404","TA Boult -0.12431","RA Jadeja -0.08003","NT Ellis -0.11389","M Pathirana -0.09302","KH Pandya -0.10081","Akash Madhwal -0.15131","K Kartikeya -0.14552","MM Sharma -0.07429","JC Archer -0.14282","I Sharma -0.10871","Naveen-ul-Haq -0.09247","A Nortje -0.05856","M Theekshana -0.04565","Ravi Bishnoi -0.03751","A Zampa -0.08513","B Kumar -0.03184","PWH de Silva -0.03421","T Natarajan -0.01962","Harshit Rana -0.05167","M Markande -0.01455","MM Ali -0.01491","A Mishra -0.01598","WD Parnell -0.01115","MA Wood -0.01358","J Little  0.00238","MR Marsh  0.00414","Washington Sundar  0.02452","Yash Thakur  0.02860","VG Arora  0.07435","AS Joseph  0.05020","JP Behrendorff  0.02978","HH Pandya  0.05699","JO Holder  0.05899","K Rabada  0.07739","C Green  0.05298","KK Ahmed  0.06234","DL Chahar  0.08886","RP Meredith  0.15402","Vijaykumar Vyshak  0.13091","Arshdeep Singh  0.06474","HR Shokeen  0.19680","SN Thakur  0.19277","Avesh Khan  0.13987","HV Patel  0.08805","UT Yadav  0.23904","M Jansen  0.18170","CJ Jordan  0.22661","SM Curran  0.11336","Akash Singh  0.28929","TU Deshpande  0.11076","KV Sharma  0.32112","Mukesh Kumar  0.23557","Umran Malik  0.44108"],"hoverinfo":"text","marker":{"size":[309,323,329,288,371,299,300,301,296,326,403,239,407,290,166,235,348,233,310,253,160,163,268,129,157,175,251,298,312,133,319,175,276,108,230,157,115,157,102,211,132,106,207,107,150,262,156,176,147,239,212,215,126,153,324,119,132,176,302,116,178,140,299,117,368,132,197,124],"sizeref":1.5,"sizemode":"area","color":"green"},"showlegend":false,"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"IPL 2023 Bowling Efficiency","xaxis":{"domain":[0,1],"automargin":true,"title":"Economy"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Adjusted Run Rate"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"mode":"markers","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"mode":"markers","type":"scatter","x":[7.51020408163265,8.14556962025316,7.5,7.19148936170213,8.11475409836066,7.82332155477032,7.36734693877551,7.75167785234899,7.97916666666667,8.17665615141956,8.03076923076923,8.23076923076923,8.23880597014925,8.60869565217391,8.02453987730061,8.21052631578947,7.56140350877193,8.92105263157895,8.00719424460432,7.45238095238095,8.58823529411765,8.73076923076923,8.17358490566038,9.5,8.24,7.82142857142857,9.1,8,7.74257425742574,8.54545454545454,8.33333333333333,8.89655172413793,9.11111111111111,8.64705882352941,7.89473684210526,7.5,7.84210526315789,9.37748344370861,8.125,8.64705882352941,8.4297520661157,8.26415094339623,9.07853403141361,9.125,9.375,9.21428571428571,9.12,9.96491228070176,10.0869565217391,9.5,9.12121212121212,8.73529411764706,10.5254237288136,10.5416666666667,9.69836065573771,9.8421052631579,10.4761904761905,9.75862068965517,9.65957446808511,9.94736842105263,9.88888888888889,10.7727272727273,10.2229965156794,9.89473684210526,9.92375366568915,10.3720930232558,10.5161290322581,10.85],"y":[-0.271134923524394,-0.214108787708021,-0.210291838862296,-0.21290588734163,-0.138079732319446,-0.162455268205094,-0.154926117941232,-0.151251068566981,-0.143177255574884,-0.124919707368481,-0.0997483683412827,-0.158736152640675,-0.0854023365019534,-0.114952670494499,-0.194040484572609,-0.124314416552964,-0.0800307372844024,-0.113887289188802,-0.0930221134322402,-0.100807135008683,-0.151310382769424,-0.145519005409523,-0.0742949426774057,-0.142816898771335,-0.108714061188853,-0.0924718820190152,-0.0585642628115823,-0.0456518384155172,-0.0375113325642127,-0.0851259014018724,-0.0318440624955243,-0.0342135900196995,-0.0196242441630445,-0.0516695712398118,-0.0145510263106256,-0.0149073500546104,-0.0159834078692452,-0.0111510739116676,-0.0135779563008252,0.00237948001850062,0.0041401393493829,0.0245225880759493,0.0286032316248985,0.0743498586755756,0.0502035573902294,0.0297790436780174,0.0569911273519281,0.058985654727068,0.0773945855992042,0.0529770698055416,0.0623442253600213,0.0888595751397706,0.154016756663955,0.130907251780918,0.0647443152461413,0.196799782175548,0.192765245679823,0.139873860519264,0.0880455773776447,0.239035841929324,0.181695068257496,0.22660615503732,0.11335673606839,0.289290835963575,0.110756378678566,0.321119202610775,0.235569266979432,0.441083931646826],"text":["R Ashwin -0.27113","CV Varun -0.21411","Mohammed Siraj -0.21029","AR Patel -0.21291","PP Chawla -0.13808","Noor Ahmad -0.16246","Kuldeep Yadav -0.15493","RD Chahar -0.15125","SP Narine -0.14318","YS Chahal -0.12492","Mohammed Shami -0.09975","Suyash Sharma -0.15874","Rashid Khan -0.08540","Sandeep Sharma -0.11495","Harpreet Brar -0.19404","TA Boult -0.12431","RA Jadeja -0.08003","NT Ellis -0.11389","M Pathirana -0.09302","KH Pandya -0.10081","Akash Madhwal -0.15131","K Kartikeya -0.14552","MM Sharma -0.07429","JC Archer -0.14282","I Sharma -0.10871","Naveen-ul-Haq -0.09247","A Nortje -0.05856","M Theekshana -0.04565","Ravi Bishnoi -0.03751","A Zampa -0.08513","B Kumar -0.03184","PWH de Silva -0.03421","T Natarajan -0.01962","Harshit Rana -0.05167","M Markande -0.01455","MM Ali -0.01491","A Mishra -0.01598","WD Parnell -0.01115","MA Wood -0.01358","J Little  0.00238","MR Marsh  0.00414","Washington Sundar  0.02452","Yash Thakur  0.02860","VG Arora  0.07435","AS Joseph  0.05020","JP Behrendorff  0.02978","HH Pandya  0.05699","JO Holder  0.05899","K Rabada  0.07739","C Green  0.05298","KK Ahmed  0.06234","DL Chahar  0.08886","RP Meredith  0.15402","Vijaykumar Vyshak  0.13091","Arshdeep Singh  0.06474","HR Shokeen  0.19680","SN Thakur  0.19277","Avesh Khan  0.13987","HV Patel  0.08805","UT Yadav  0.23904","M Jansen  0.18170","CJ Jordan  0.22661","SM Curran  0.11336","Akash Singh  0.28929","TU Deshpande  0.11076","KV Sharma  0.32112","Mukesh Kumar  0.23557","Umran Malik  0.44108"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"marker":{"color":"green","size":[309,323,329,288,371,299,300,301,296,326,403,239,407,290,166,235,348,233,310,253,160,163,268,129,157,175,251,298,312,133,319,175,276,108,230,157,115,157,102,211,132,106,207,107,150,262,156,176,147,239,212,215,126,153,324,119,132,176,302,116,178,140,299,117,368,132,197,124],"sizeref":1.5,"sizemode":"area","line":{"color":"rgba(255,127,14,1)"}},"showlegend":false,"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<p>However, scoring rate is not the only way a player can impact their team’s performance. While wickets have less of an impact on t20 than other forms of the game, batters that can stay at the crease longer and bowlers that can take more wickets help their put their teams in a position to win. The Adjusted Average metric calculates this impact after adjusting for a player’s situation. This is calculated very similarly to ARR, where each ball a batter faces or bowler bowls receives an expected average determined by the venue, over, and opposition. Then, a players Adjusted Average is determined by difference between their actual average and the mean expected average of balls they faced/bowled. This metric is shown below for both batters and bowlers performance compared to their simple average. For batting, it most heavily rewards batters that had high averages despite frequently batting in middle or late overs where more wickets are typically taken. Adjusted Average for bowlers is much more correlated with Average than for batters. This is likely due to the fact that, while some bowlers may be more used at the beginning of an inning or during death overs, bowlers overall play in a higher variety of overs than batters. Most teams emply a mixed bowling attack rather than having their bowlers stay on to use all for of their overs at once.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c59cb7ff662ffa7df029" style="width:624px;height:384px;"></div>
+<script type="application/json" data-for="htmlwidget-c59cb7ff662ffa7df029">{"x":{"visdat":{"7cd8820263d":["function () ","plotlyVisDat"]},"cur_data":"7cd8820263d","attrs":{"7cd8820263d":{"mode":"markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"7cd8820263d.1":{"mode":"markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","x":[43.2142857142857,48.0769230769231,59.3333333333333,33.3333333333333,49.7777777777778,32.6,29.8333333333333,42.1428571428571,56.1538461538462,29.1538461538462,31.3846153846154,25.5714285714286,38,30.1666666666667,27.25,30.2666666666667,42.875,32.5,50.2222222222222,51.6923076923077,35.625,20.5454545454545,37.625,29.8571428571429,34.875,21.7142857142857,35.75,23.7692307692308,26,26.7777777777778,27.8,36.8571428571429,28,15.8,25.6666666666667,26.25,53.25,41.4444444444444,14.125,17.7142857142857,26.5714285714286,22.2857142857143,14.2222222222222,23.8,18.8,28.3,37.375,51.7142857142857,19,23.1875,16.875,20.6363636363636,19.5,13.25,31.4545454545455,23.75,31.7692307692308,28.8571428571429,32.375,27,59.25,22.75,34.25,20.6363636363636,42.25,20.75,22.5454545454545,26.1,27.6,11.6666666666667,21.1111111111111,13.75,17.7777777777778],"y":[0.303444520797275,0.320851701122889,0.794330453487297,0.0305533200124966,0.748967348955106,-0.0636560532125208,0.407139509233184,0.144744742352168,0.35242710455982,-0.00293064556601034,0.0156638839858972,-0.326582464158417,0.356187321082123,-0.0772420923968468,-0.027542487496537,-0.203859611398368,0.404048740587454,0.111030714340925,0.217995335276934,0.513531004103772,0.00363351548374093,-0.313820824392183,0.345364066624925,0.00608501720786453,0.0136150078633426,0.00168763878377075,0.133831014285025,-0.257108776255278,0.726554806676724,0.0729730246576122,0.132080073889671,0.0513052846404459,-0.252536600289492,-0.343888039500865,0.0564064715114657,-0.318824108057758,0.249912067892066,0.0690422065434437,-0.501760708288042,-0.250771553535037,-0.33387618780688,0.122574338753839,-0.561106013442484,0.0959370943318667,-0.308944282270039,0.212028595510028,0.456654606570741,0.525949823103475,-0.455624618508538,-0.354690207762092,-0.45562941109901,-0.449515222230907,-0.424023741136236,-0.678964395806592,0.219806325729366,0.28962361754726,-0.108949621833862,-0.223374375363115,0.173836137514834,-0.308936314942924,1.23083638317032,-0.209756913120387,0.357671052593845,-0.216645714874935,0.913446231078853,-0.558313441267943,-0.236627710681398,-0.220273878889017,-0.0854440100822528,-0.602972467146881,-0.4868887310899,-0.410674475553163,-0.443273037150199],"text":["SA Yadav  0.30344","YBK Jaiswal  0.32085","Shubman Gill  0.79433","GJ Maxwell  0.03055","H Klaasen  0.74897","AM Rahane -0.06366","N Pooran  0.40714","RD Gaikwad  0.14474","F du Plessis  0.35243","KR Mayers -0.00293","MP Stoinis  0.01566","P Simran Singh -0.32658","S Dube  0.35619","SV Samson -0.07724","PD Salt -0.02754","Ishan Kishan -0.20386","Tilak Varma  0.40405","Rashid Khan  0.11103","C Green  0.21800","DP Conway  0.51353","JJ Roy  0.00363","Abhishek Sharma -0.31382","V Shankar  0.34536","RR Rossouw  0.00609","LS Livingstone  0.01362","Dhruv Jurel  0.00169","Q de Kock  0.13383","JM Sharma -0.25711","MS Dhoni  0.72655","N Wadhera  0.07297","Sikandar Raza  0.13208","DA Warner  0.05131","JC Buttler -0.25254","AT Rayudu -0.34389","TH David  0.05641","Anmolpreet Singh -0.31882","V Kohli  0.24991","S Dhawan  0.06904","SN Thakur -0.50176","MM Ali -0.25077","Atharva Taide -0.33388","M Shahrukh Khan  0.12257","MR Marsh -0.56111","A Badoni  0.09594","KH Pandya -0.30894","AR Patel  0.21203","SO Hetmyer  0.45665","B Sai Sudharsan  0.52595","A Manohar -0.45562","WP Saha -0.35469","MK Lomror -0.45563","Rahmanullah Gurbaz -0.44952","MW Short -0.42402","PP Shaw -0.67896","HH Pandya  0.21981","RA Jadeja  0.28962","N Rana -0.10895","VR Iyer -0.22337","DA Miller  0.17384","MA Agarwal -0.30894","RK Singh  1.23084","RA Tripathi -0.20976","KL Rahul  0.35767","AD Russell -0.21665","Abdul Samad  0.91345","RG Sharma -0.55831","AK Markram -0.23663","D Padikkal -0.22027","SM Curran -0.08544","KD Karthik -0.60297","HC Brook -0.48689","Aman Hakim Khan -0.41067","MK Pandey -0.44327"],"hoverinfo":"text","marker":{"size":[605,625,890,400,448,326,358,590,730,379,408,358,418,362,218,454,343,130,452,672,285,226,301,209,279,152,143,309,104,241,139,516,392,158,231,105,639,373,113,124,186,156,128,238,188,283,299,362,114,371,135,227,117,106,346,190,413,404,259,270,474,273,274,227,169,332,248,261,276,140,190,110,160],"sizeref":1.5,"sizemode":"area","color":"blue"},"showlegend":false,"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"IPL 2023 Batting Average vs Adjusted Average","xaxis":{"domain":[0,1],"automargin":true,"title":"Average"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Adjusted Average"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"mode":"markers","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"mode":"markers","type":"scatter","x":[43.2142857142857,48.0769230769231,59.3333333333333,33.3333333333333,49.7777777777778,32.6,29.8333333333333,42.1428571428571,56.1538461538462,29.1538461538462,31.3846153846154,25.5714285714286,38,30.1666666666667,27.25,30.2666666666667,42.875,32.5,50.2222222222222,51.6923076923077,35.625,20.5454545454545,37.625,29.8571428571429,34.875,21.7142857142857,35.75,23.7692307692308,26,26.7777777777778,27.8,36.8571428571429,28,15.8,25.6666666666667,26.25,53.25,41.4444444444444,14.125,17.7142857142857,26.5714285714286,22.2857142857143,14.2222222222222,23.8,18.8,28.3,37.375,51.7142857142857,19,23.1875,16.875,20.6363636363636,19.5,13.25,31.4545454545455,23.75,31.7692307692308,28.8571428571429,32.375,27,59.25,22.75,34.25,20.6363636363636,42.25,20.75,22.5454545454545,26.1,27.6,11.6666666666667,21.1111111111111,13.75,17.7777777777778],"y":[0.303444520797275,0.320851701122889,0.794330453487297,0.0305533200124966,0.748967348955106,-0.0636560532125208,0.407139509233184,0.144744742352168,0.35242710455982,-0.00293064556601034,0.0156638839858972,-0.326582464158417,0.356187321082123,-0.0772420923968468,-0.027542487496537,-0.203859611398368,0.404048740587454,0.111030714340925,0.217995335276934,0.513531004103772,0.00363351548374093,-0.313820824392183,0.345364066624925,0.00608501720786453,0.0136150078633426,0.00168763878377075,0.133831014285025,-0.257108776255278,0.726554806676724,0.0729730246576122,0.132080073889671,0.0513052846404459,-0.252536600289492,-0.343888039500865,0.0564064715114657,-0.318824108057758,0.249912067892066,0.0690422065434437,-0.501760708288042,-0.250771553535037,-0.33387618780688,0.122574338753839,-0.561106013442484,0.0959370943318667,-0.308944282270039,0.212028595510028,0.456654606570741,0.525949823103475,-0.455624618508538,-0.354690207762092,-0.45562941109901,-0.449515222230907,-0.424023741136236,-0.678964395806592,0.219806325729366,0.28962361754726,-0.108949621833862,-0.223374375363115,0.173836137514834,-0.308936314942924,1.23083638317032,-0.209756913120387,0.357671052593845,-0.216645714874935,0.913446231078853,-0.558313441267943,-0.236627710681398,-0.220273878889017,-0.0854440100822528,-0.602972467146881,-0.4868887310899,-0.410674475553163,-0.443273037150199],"text":["SA Yadav  0.30344","YBK Jaiswal  0.32085","Shubman Gill  0.79433","GJ Maxwell  0.03055","H Klaasen  0.74897","AM Rahane -0.06366","N Pooran  0.40714","RD Gaikwad  0.14474","F du Plessis  0.35243","KR Mayers -0.00293","MP Stoinis  0.01566","P Simran Singh -0.32658","S Dube  0.35619","SV Samson -0.07724","PD Salt -0.02754","Ishan Kishan -0.20386","Tilak Varma  0.40405","Rashid Khan  0.11103","C Green  0.21800","DP Conway  0.51353","JJ Roy  0.00363","Abhishek Sharma -0.31382","V Shankar  0.34536","RR Rossouw  0.00609","LS Livingstone  0.01362","Dhruv Jurel  0.00169","Q de Kock  0.13383","JM Sharma -0.25711","MS Dhoni  0.72655","N Wadhera  0.07297","Sikandar Raza  0.13208","DA Warner  0.05131","JC Buttler -0.25254","AT Rayudu -0.34389","TH David  0.05641","Anmolpreet Singh -0.31882","V Kohli  0.24991","S Dhawan  0.06904","SN Thakur -0.50176","MM Ali -0.25077","Atharva Taide -0.33388","M Shahrukh Khan  0.12257","MR Marsh -0.56111","A Badoni  0.09594","KH Pandya -0.30894","AR Patel  0.21203","SO Hetmyer  0.45665","B Sai Sudharsan  0.52595","A Manohar -0.45562","WP Saha -0.35469","MK Lomror -0.45563","Rahmanullah Gurbaz -0.44952","MW Short -0.42402","PP Shaw -0.67896","HH Pandya  0.21981","RA Jadeja  0.28962","N Rana -0.10895","VR Iyer -0.22337","DA Miller  0.17384","MA Agarwal -0.30894","RK Singh  1.23084","RA Tripathi -0.20976","KL Rahul  0.35767","AD Russell -0.21665","Abdul Samad  0.91345","RG Sharma -0.55831","AK Markram -0.23663","D Padikkal -0.22027","SM Curran -0.08544","KD Karthik -0.60297","HC Brook -0.48689","Aman Hakim Khan -0.41067","MK Pandey -0.44327"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"marker":{"color":"blue","size":[605,625,890,400,448,326,358,590,730,379,408,358,418,362,218,454,343,130,452,672,285,226,301,209,279,152,143,309,104,241,139,516,392,158,231,105,639,373,113,124,186,156,128,238,188,283,299,362,114,371,135,227,117,106,346,190,413,404,259,270,474,273,274,227,169,332,248,261,276,140,190,110,160],"sizeref":1.5,"sizemode":"area","line":{"color":"rgba(255,127,14,1)"}},"showlegend":false,"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-2496b44714361bccfea8" style="width:624px;height:384px;"></div>
+<script type="application/json" data-for="htmlwidget-2496b44714361bccfea8">{"x":{"visdat":{"7cd811b653a6":["function () ","plotlyVisDat"]},"cur_data":"7cd811b653a6","attrs":{"7cd811b653a6":{"mode":"markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"7cd811b653a6.1":{"mode":"markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","x":[26.2857142857143,21.45,19.7368421052632,30.7272727272727,22.5,23.0625,36.1,48.125,34.8181818181818,20.5714285714286,18.6428571428571,32.1,20.4444444444444,39.6,24.2222222222222,24,21.55,26.0769230769231,19.5263157894737,34.7777777777778,14.6,45.4,13.3703703703704,95,20.6,19.9090909090909,36.4,35.6363636363636,24.4375,23.5,26.5625,28.6666666666667,41,29.4,25,21.6666666666667,21.2857142857143,26.2222222222222,11.8181818181818,42,14.1666666666667,48.6666666666667,22.2307692307692,29.2,32.1428571428571,27.6428571428571,76,71,33.1428571428571,60.1666666666667,33.4444444444444,22.8461538461538,29.5714285714286,28.1111111111111,29,62.3333333333333,31.4285714285714,35.375,32.4285714285714,189,26.7,79,48.9,37.6,26.8571428571429,22.3,40.75,43.4],"y":[-0.338215854497048,-0.45720545161217,-0.343523650075344,-0.131040192420485,-0.474214637536055,-0.387727900137529,0.0766716288910547,0.316255802541812,-0.0285277385040953,-0.395709334053593,-0.380945858066802,-0.155138346839798,-0.39340863101709,-0.048597679695372,-0.397360224840265,-0.335727017356967,-0.352826151031318,-0.278823517360289,-0.272000410056209,-0.0309267583777889,-0.584048874000656,0.108159611553432,-0.510142710006413,1.14337707305431,-0.350631576882212,-0.271461462030786,0.0819293740691656,0.142267501049074,-0.231190121334725,-0.449254176310218,-0.163795095333225,-0.115576597369842,0.255030711172353,-0.210925728090552,-0.26253655618327,-0.31648908593054,-0.245528964001366,-0.294638368302125,-0.572618500790559,0.433428076890029,-0.527923257563327,0.380280168567933,-0.268167126121476,-0.148285223962935,0.0105692028510051,-0.253231607378163,0.991456076819909,0.936708834939682,-0.141351359104234,0.554253449722845,-0.0069579232911664,-0.201511660213839,-0.099053015867574,-0.283862945054156,-0.17223287388208,0.764590841988091,-0.0764397635399398,0.110791268227207,-0.0154398066933437,4.2187455553843,-0.332774701263023,1.20712854996212,0.293765889589003,0.204367616851136,-0.182472568957513,-0.349903462353874,0.286334282715678,0.399320402027043],"text":["R Ashwin -0.33822","CV Varun -0.45721","Mohammed Siraj -0.34352","AR Patel -0.13104","PP Chawla -0.47421","Noor Ahmad -0.38773","Kuldeep Yadav  0.07667","RD Chahar  0.31626","SP Narine -0.02853","YS Chahal -0.39571","Mohammed Shami -0.38095","Suyash Sharma -0.15514","Rashid Khan -0.39341","Sandeep Sharma -0.04860","Harpreet Brar -0.39736","TA Boult -0.33573","RA Jadeja -0.35283","NT Ellis -0.27882","M Pathirana -0.27200","KH Pandya -0.03093","Akash Madhwal -0.58405","K Kartikeya  0.10816","MM Sharma -0.51014","JC Archer  1.14338","I Sharma -0.35063","Naveen-ul-Haq -0.27146","A Nortje  0.08193","M Theekshana  0.14227","Ravi Bishnoi -0.23119","A Zampa -0.44925","B Kumar -0.16380","PWH de Silva -0.11558","T Natarajan  0.25503","Harshit Rana -0.21093","M Markande -0.26254","MM Ali -0.31649","A Mishra -0.24553","WD Parnell -0.29464","MA Wood -0.57262","J Little  0.43343","MR Marsh -0.52792","Washington Sundar  0.38028","Yash Thakur -0.26817","VG Arora -0.14829","AS Joseph  0.01057","JP Behrendorff -0.25323","HH Pandya  0.99146","JO Holder  0.93671","K Rabada -0.14135","C Green  0.55425","KK Ahmed -0.00696","DL Chahar -0.20151","RP Meredith -0.09905","Vijaykumar Vyshak -0.28386","Arshdeep Singh -0.17223","HR Shokeen  0.76459","SN Thakur -0.07644","Avesh Khan  0.11079","HV Patel -0.01544","UT Yadav  4.21875","M Jansen -0.33277","CJ Jordan  1.20713","SM Curran  0.29377","Akash Singh  0.20437","TU Deshpande -0.18247","KV Sharma -0.34990","Mukesh Kumar  0.28633","Umran Malik  0.39932"],"hoverinfo":"text","marker":{"size":[309,323,329,288,371,299,300,301,296,326,403,239,407,290,166,235,348,233,310,253,160,163,268,129,157,175,251,298,312,133,319,175,276,108,230,157,115,157,102,211,132,106,207,107,150,262,156,176,147,239,212,215,126,153,324,119,132,176,302,116,178,140,299,117,368,132,197,124],"sizeref":1.5,"sizemode":"area","color":"green"},"showlegend":false,"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"IPL 2023 Bowling Average vs Adjusted Average","xaxis":{"domain":[0,1],"automargin":true,"title":"Average"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Adjusted Average"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"mode":"markers","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"mode":"markers","type":"scatter","x":[26.2857142857143,21.45,19.7368421052632,30.7272727272727,22.5,23.0625,36.1,48.125,34.8181818181818,20.5714285714286,18.6428571428571,32.1,20.4444444444444,39.6,24.2222222222222,24,21.55,26.0769230769231,19.5263157894737,34.7777777777778,14.6,45.4,13.3703703703704,95,20.6,19.9090909090909,36.4,35.6363636363636,24.4375,23.5,26.5625,28.6666666666667,41,29.4,25,21.6666666666667,21.2857142857143,26.2222222222222,11.8181818181818,42,14.1666666666667,48.6666666666667,22.2307692307692,29.2,32.1428571428571,27.6428571428571,76,71,33.1428571428571,60.1666666666667,33.4444444444444,22.8461538461538,29.5714285714286,28.1111111111111,29,62.3333333333333,31.4285714285714,35.375,32.4285714285714,189,26.7,79,48.9,37.6,26.8571428571429,22.3,40.75,43.4],"y":[-0.338215854497048,-0.45720545161217,-0.343523650075344,-0.131040192420485,-0.474214637536055,-0.387727900137529,0.0766716288910547,0.316255802541812,-0.0285277385040953,-0.395709334053593,-0.380945858066802,-0.155138346839798,-0.39340863101709,-0.048597679695372,-0.397360224840265,-0.335727017356967,-0.352826151031318,-0.278823517360289,-0.272000410056209,-0.0309267583777889,-0.584048874000656,0.108159611553432,-0.510142710006413,1.14337707305431,-0.350631576882212,-0.271461462030786,0.0819293740691656,0.142267501049074,-0.231190121334725,-0.449254176310218,-0.163795095333225,-0.115576597369842,0.255030711172353,-0.210925728090552,-0.26253655618327,-0.31648908593054,-0.245528964001366,-0.294638368302125,-0.572618500790559,0.433428076890029,-0.527923257563327,0.380280168567933,-0.268167126121476,-0.148285223962935,0.0105692028510051,-0.253231607378163,0.991456076819909,0.936708834939682,-0.141351359104234,0.554253449722845,-0.0069579232911664,-0.201511660213839,-0.099053015867574,-0.283862945054156,-0.17223287388208,0.764590841988091,-0.0764397635399398,0.110791268227207,-0.0154398066933437,4.2187455553843,-0.332774701263023,1.20712854996212,0.293765889589003,0.204367616851136,-0.182472568957513,-0.349903462353874,0.286334282715678,0.399320402027043],"text":["R Ashwin -0.33822","CV Varun -0.45721","Mohammed Siraj -0.34352","AR Patel -0.13104","PP Chawla -0.47421","Noor Ahmad -0.38773","Kuldeep Yadav  0.07667","RD Chahar  0.31626","SP Narine -0.02853","YS Chahal -0.39571","Mohammed Shami -0.38095","Suyash Sharma -0.15514","Rashid Khan -0.39341","Sandeep Sharma -0.04860","Harpreet Brar -0.39736","TA Boult -0.33573","RA Jadeja -0.35283","NT Ellis -0.27882","M Pathirana -0.27200","KH Pandya -0.03093","Akash Madhwal -0.58405","K Kartikeya  0.10816","MM Sharma -0.51014","JC Archer  1.14338","I Sharma -0.35063","Naveen-ul-Haq -0.27146","A Nortje  0.08193","M Theekshana  0.14227","Ravi Bishnoi -0.23119","A Zampa -0.44925","B Kumar -0.16380","PWH de Silva -0.11558","T Natarajan  0.25503","Harshit Rana -0.21093","M Markande -0.26254","MM Ali -0.31649","A Mishra -0.24553","WD Parnell -0.29464","MA Wood -0.57262","J Little  0.43343","MR Marsh -0.52792","Washington Sundar  0.38028","Yash Thakur -0.26817","VG Arora -0.14829","AS Joseph  0.01057","JP Behrendorff -0.25323","HH Pandya  0.99146","JO Holder  0.93671","K Rabada -0.14135","C Green  0.55425","KK Ahmed -0.00696","DL Chahar -0.20151","RP Meredith -0.09905","Vijaykumar Vyshak -0.28386","Arshdeep Singh -0.17223","HR Shokeen  0.76459","SN Thakur -0.07644","Avesh Khan  0.11079","HV Patel -0.01544","UT Yadav  4.21875","M Jansen -0.33277","CJ Jordan  1.20713","SM Curran  0.29377","Akash Singh  0.20437","TU Deshpande -0.18247","KV Sharma -0.34990","Mukesh Kumar  0.28633","Umran Malik  0.39932"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"marker":{"color":"green","size":[309,323,329,288,371,299,300,301,296,326,403,239,407,290,166,235,348,233,310,253,160,163,268,129,157,175,251,298,312,133,319,175,276,108,230,157,115,157,102,211,132,106,207,107,150,262,156,176,147,239,212,215,126,153,324,119,132,176,302,116,178,140,299,117,368,132,197,124],"sizeref":1.5,"sizemode":"area","line":{"color":"rgba(255,127,14,1)"}},"showlegend":false,"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<p>Overall, these metrics serve as starting points for a deeper experimentation with quantifying player performance in cricket. One of the important things to test is what factors are most important when contextualizing performance. For example, elements like the wickets remaining in an innings have been used by others to predict expected runs but are missing in my calculations. Additionally, an important next step is creating a cohesive player performance metric that combines Adjusted Run Rate and Adjusted Average. Doing so will shed more light on the importance of run rate vs preserving wickets in the modern t20 game.</p>
+<p>Code and data for the project is available <a href="https://github.com/wickistats/WickiStats/blob/main/data/AdjStatsMaker.R">here</a>, and feel free to direct any suggestions and questions to <a href="mailto:wickistats@gmail.com" class="email">wickistats@gmail.com</a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
